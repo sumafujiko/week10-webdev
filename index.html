@@ -12,11 +12,10 @@ The list should be displayed as a bulleted unordered list-->
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            text-align: center;
         }
 
-        h1,
-        u {
-            text-align: center;
+        h1 {
             color: #333;
         }
 
@@ -24,27 +23,52 @@ The list should be displayed as a bulleted unordered list-->
             list-style-type: none;
             padding: 0;
             margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         li {
+            width: 200px; 
             padding: 10px;
             margin: 10px;
             background-color: #f9f9f9;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
+        .list {
+            display: flex;
+            justify-content: center;
+        }
+
+        li:hover {
+            background-color: #f0f0f0;transition: all 0.3s ease;
+
+        }
     </style>
 </head>
 <body>
     <h1>Shopping List</h1>
-    <ul>
-        <li>Milk</li>
-        <li>Butter</li>
-        <li>Chocolate</li>
-        <li>Syrup</li>
-        <li>Flour</li>
-    </ul>
+    
+    <div class="list">
+        <ul>
+            <li>Milk</li>
+            <li>Butter</li>
+            <li>Chocolate</li>
+            <li>Syrup</li>
+            <li>Flour</li>
+        </ul>
+    </div> 
 
+    <h2>Add Item</h2>
+    <form id="addItemForm">
+        <input type="text" id="newItem" name="newItem">
+        <input type="submit" value="Add to list">
+</form>
+    <h2>Remove Item</h2>
+    <form id="removeItemForm">
+        <input type="text" id="removeItem" name="removeItem">
+        <input type="submit" value="Remove from list">
     <script>
 
     </script>
