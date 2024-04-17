@@ -13,10 +13,13 @@ The list should be displayed as a bulleted unordered list-->
             margin: 0;
             padding: 0;
             text-align: center;
+            background-color: rgb(197, 141, 197);
         }
 
         h1 {
             color: #333;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-style: italic;
         }
 
         ul {
@@ -42,21 +45,19 @@ The list should be displayed as a bulleted unordered list-->
         }
 
         li:hover {
-            background-color: #f0f0f0;transition: all 0.3s ease;
-
+            background-color: rgb(194, 116, 194);transition: all 0.3s ease;
         }
     </style>
 </head>
 <body>
     <h1>Shopping List</h1>
-    
     <div class="list">
         <ul>
-            <li>Milk</li>
-            <li>Butter</li>
-            <li>Chocolate</li>
-            <li>Syrup</li>
-            <li>Flour</li>
+            <li id="item1">Milk</li>
+            <li id="item2">Butter</li>
+            <li id="item3">Chocolate</li>
+            <li id="item4">Syrup</li>
+            <li id="item5">Flour</li>
         </ul>
     </div> 
 
@@ -69,8 +70,31 @@ The list should be displayed as a bulleted unordered list-->
     <form id="removeItemForm">
         <input type="text" id="removeItem" name="removeItem">
         <input type="submit" value="Remove from list">
-    <script>
+    </form>
 
+    <!-- JavaScript -->
+    <script>
+        const addItemForm = document.getElementById('addItemForm');
+        const removeItemForm = document.getElementById('removeItemForm');
+        const list = document.querySelector('.list ul');
+
+        addItemForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const newItem = document.getElementById('newItem').value;
+            const li = document.createElement('li');
+            li.textContent = newItem;
+            list.appendChild(li);
+            document.getElementById('newItem').value = '';
+        });
+
+        removeItemForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const removeItem = document.getElementById('removeItem').value;
+            const li = document.getElementById(removeItem);
+            list.removeChild(li);
+            document.getElementById('removeItem').value = '';
+        });
     </script>
+    <!-- End of JavaScript -->
 </body>
 </html>
