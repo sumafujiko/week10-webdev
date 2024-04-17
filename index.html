@@ -16,7 +16,8 @@ The list should be displayed as a bulleted unordered list-->
             background-color: rgb(197, 141, 197);
         }
 
-        h1 {
+        h1,
+        h2{
             color: #333;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             font-style: italic;
@@ -50,14 +51,15 @@ The list should be displayed as a bulleted unordered list-->
     </style>
 </head>
 <body>
-    <h1>Shopping List</h1>
+    <h1>Shopping List 🛒</h1>
+    <p>Heres a basic shopping list for baking, feel free to add or delete from it!</p>
     <div class="list">
         <ul>
-            <li id="item1">Milk</li>
-            <li id="item2">Butter</li>
-            <li id="item3">Chocolate</li>
-            <li id="item4">Syrup</li>
-            <li id="item5">Flour</li>
+            <li id="item1">milk</li>
+            <li id="item2">butter</li>
+            <li id="item3">chocolate</li>
+            <li id="item4">syrup</li>
+            <li id="item5">flour</li>
         </ul>
     </div> 
 
@@ -74,26 +76,38 @@ The list should be displayed as a bulleted unordered list-->
 
     <!-- JavaScript -->
     <script>
-        const addItemForm = document.getElementById('addItemForm');
-        const removeItemForm = document.getElementById('removeItemForm');
-        const list = document.querySelector('.list ul');
-
-        addItemForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const newItem = document.getElementById('newItem').value;
-            const li = document.createElement('li');
-            li.textContent = newItem;
-            list.appendChild(li);
+        let items = ['milk', 'butter', 'chocolate', 'syrup', 'flour'].map(item => item.toLowerCase());
+        let list = document.querySelector('.list ul');
+        let addItemForm = document.getElementById('addItemForm');
+        let removeItemForm = document.getElementById('removeItemForm');
+        // Add item to list
+        addItemForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let newItem = document.getElementById('newItem').value;
+            items.push(newItem);
+            displayList();
             document.getElementById('newItem').value = '';
         });
-
-        removeItemForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const removeItem = document.getElementById('removeItem').value;
-            const li = document.getElementById(removeItem);
-            list.removeChild(li);
+        // Remove item from list
+        removeItemForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let removeItem = document.getElementById('removeItem').value.toLowerCase();
+            let index = items.indexOf(removeItem);
+            if (index > -1) {
+                items.splice(index, 1);
+            }
+            displayList();
             document.getElementById('removeItem').value = '';
         });
+        // Display list
+        function displayList() {
+            list.innerHTML = '';
+            items.forEach(function(item) {
+                let li = document.createElement('li');
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        }
     </script>
     <!-- End of JavaScript -->
 </body>
